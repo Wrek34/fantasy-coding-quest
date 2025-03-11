@@ -24,7 +24,7 @@ Fantasy Coding Quest transforms coding interview preparation into an immersive R
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/YOUR-USERNAME/fantasy-coding-quest.git
+   git clone https://github.com/wrek34/fantasy-coding-quest.git
    cd fantasy-coding-quest
    ```
 
