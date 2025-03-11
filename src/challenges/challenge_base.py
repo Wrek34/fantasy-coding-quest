@@ -34,6 +34,7 @@ class Challenge(ABC):
         hints: List[str] = None,
         solution: str = None,
         area: str = "Algorithm Forest",
+        primary_skill: str = None,
     ):
         self.id = id
         self.name = name
@@ -46,6 +47,7 @@ class Challenge(ABC):
         self.hints = hints or []
         self.solution = solution
         self.area = area
+        self.primary_skill = primary_skill
         
         # Metadata for tracking
         self.times_attempted = 0
@@ -77,18 +79,49 @@ Time Limit: {"None" if self.time_limit_seconds == 0 else f"{self.time_limit_seco
             return "No more hints available for this challenge."
         return self.hints[hint_level]
     
+    def attempt_solution(self, user_solution: Callable) -> Dict[str, Any]:
+        """
+        Attempt a solution for this challenge. This method calls verify_solution
+        which should be implemented by subclasses.
+        
+        Args:
+            user_solution: User's solution function
+            
+        Returns:
+            Dict with verification results
+        """
+        try:
+            # Measure the time taken
+            start_time = time.time()
+            
+            # Verify the solution
+            results = self.verify_solution(user_solution)
+            
+            # Add the time taken
+            results["time_taken"] = time.time() - start_time
+            
+            return results
+        except Exception as e:
+            # Return error if something went wrong
+            return {
+                "success": False,
+                "feedback": [f"Error evaluating solution: {str(e)}"],
+                "time_taken": 0
+            }
+    
     @abstractmethod
     def verify_solution(self, user_solution: Callable) -> Dict[str, Any]:
         """
         Run test cases against the user's solution.
+        This method should be overridden by subclasses.
         
         Args:
-            user_solution: A callable function implementing the solution
+            user_solution: User's solution function
             
         Returns:
-            Dict containing results of test cases, time taken, etc.
+            Dict with verification results
         """
-        pass
+        raise NotImplementedError("Challenge subclasses must implement verify_solution method")
     
     def attempt(self, user_solution_code: str) -> Dict[str, Any]:
         """

@@ -1,0 +1,24 @@
+{
+  "name": "Wrek",
+  "class": "Algorithm Wizard",
+  "level": 1,
+  "experience": 0,
+  "challenges_completed": 0,
+  "skills": {
+    "ARRAYS": 1,
+    "LINKED_LISTS": 1,
+    "TREES": 1,
+    "GRAPHS": 1,
+    "DYNAMIC_PROGRAMMING": 2,
+    "SORTING": 1,
+    "SEARCHING": 1,
+    "RECURSION": 2,
+    "DATABASES": 1,
+    "SYSTEM_DESIGN": 1
+  },
+  "inventory": [],
+  "unlocked_areas": [
+    "Algorithm Forest"
+  ],
+  "timestamp": "2025-03-11T00:33:01.942370"
+}

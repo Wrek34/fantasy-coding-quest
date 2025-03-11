@@ -1,3 +1,4 @@
+import time
 from typing import List, Dict, Any, Callable
 from src.challenges.challenge_base import Challenge, DifficultyLevel, ChallengeType
 
